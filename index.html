@@ -1,241 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SinoGate — China Alpha for Global Investors</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f8fb; color: #1a1a2e; }
-    a { text-decoration: none; color: #555; transition: color 0.2s; }
-    a:hover { color: #e63946; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#f8f8fb;color:#1a1a2e}
+    a{text-decoration:none;color:#555;transition:color .2s}
+    a:hover{color:#e63946}
 
-    /* NAV */
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid #e8e8f0; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -0.5px; color: #1a1a2e; }
-    .logo span { color: #e63946; }
-    .nav-links { display: flex; gap: 32px; font-size: 14px; font-weight: 500; }
-    .btn-primary { background: #e63946; color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-weight: 700; font-size: 14px; cursor: pointer; transition: opacity 0.2s; }
-    .btn-primary:hover { opacity: 0.88; }
-    .btn-secondary { background: #fff; color: #1a1a2e; border: 1.5px solid #e0e0ee; border-radius: 10px; padding: 15px 30px; font-weight: 600; font-size: 16px; cursor: pointer; }
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #e8e8f0;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.5px;color:#1a1a2e}
+    .logo span{color:#e63946}
+    .nav-links{display:flex;gap:32px;font-size:14px;font-weight:500}
+    .btn-red{background:#e63946;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-weight:700;font-size:14px;cursor:pointer;transition:opacity .2s}
+    .btn-red:hover{opacity:.88}
+    .btn-dark{background:#1a1a2e;color:#fff;border:none;border-radius:10px;padding:15px 30px;font-weight:700;font-size:16px;cursor:pointer}
+    .btn-outline{background:#fff;color:#1a1a2e;border:1.5px solid #e0e0ee;border-radius:10px;padding:15px 30px;font-weight:600;font-size:16px;cursor:pointer}
 
     /* HERO */
-    .hero { max-width: 1100px; margin: 0 auto; padding: 100px 32px 88px; text-align: center; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; background: #fff0f1; color: #e63946; border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 600; margin-bottom: 28px; border: 1px solid #ffd0d3; }
-    .hero h1 { font-size: clamp(38px, 5vw, 62px); font-weight: 900; line-height: 1.08; letter-spacing: -2px; margin-bottom: 24px; }
-    .hero h1 span { color: #e63946; }
-    .hero p { font-size: 19px; color: #666; max-width: 560px; margin: 0 auto 44px; line-height: 1.7; }
-    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-hero { background: #e63946; color: #fff; border: none; border-radius: 10px; padding: 15px 30px; font-weight: 700; font-size: 16px; cursor: pointer; box-shadow: 0 4px 20px rgba(230,57,70,0.3); }
+    .hero{max-width:1100px;margin:0 auto;padding:100px 32px 88px;text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#fff0f1;color:#e63946;border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600;margin-bottom:28px;border:1px solid #ffd0d3}
+    .hero h1{font-size:clamp(38px,5vw,62px);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:24px}
+    .hero h1 span{color:#e63946}
+    .hero p{font-size:19px;color:#666;max-width:580px;margin:0 auto 44px;line-height:1.7}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-hero{background:#e63946;color:#fff;border:none;border-radius:10px;padding:15px 30px;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(230,57,70,.3)}
+
+    /* TWO PILLARS */
+    .pillars{max-width:1100px;margin:0 auto;padding:0 32px 80px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .pillar{border-radius:20px;padding:40px;border:1px solid #e8e8f0}
+    .pillar-infra{background:#fff}
+    .pillar-club{background:#1a1a2e;color:#fff}
+    .pillar-tag{display:inline-block;border-radius:100px;padding:5px 14px;font-size:12px;font-weight:700;margin-bottom:18px;letter-spacing:.05em}
+    .tag-infra{background:#fff0f1;color:#e63946}
+    .tag-club{background:rgba(230,57,70,.2);color:#ff8a93}
+    .pillar h3{font-size:24px;font-weight:800;margin-bottom:12px;letter-spacing:-.5px}
+    .pillar p{font-size:15px;line-height:1.7;opacity:.7;margin-bottom:20px}
+    .pillar ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .pillar ul li{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.5}
+    .pillar ul li::before{content:'→';color:#e63946;font-weight:700;flex-shrink:0;margin-top:1px}
+    .pillar-club ul li::before{color:#ff8a93}
 
     /* STATS */
-    .stats { background: #1a1a2e; padding: 60px 32px; }
-    .stats-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
-    .stat-num { font-size: 42px; font-weight: 900; color: #e63946; letter-spacing: -1px; }
-    .stat-label { font-size: 14px; color: #aaa; margin-top: 6px; }
+    .stats{background:#1a1a2e;padding:60px 32px}
+    .stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+    .stat-num{font-size:42px;font-weight:900;color:#e63946;letter-spacing:-1px}
+    .stat-label{font-size:14px;color:#aaa;margin-top:6px}
 
-    /* SECTIONS */
-    .section { max-width: 1100px; margin: 0 auto; padding: 96px 32px; }
-    .section-white { background: #fff; padding: 96px 32px; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 12px; font-weight: 700; color: #e63946; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-    .section-title { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin-bottom: 56px; }
-    .section-header { text-align: center; }
+    /* SECTION */
+    .section{max-width:1100px;margin:0 auto;padding:96px 32px}
+    .section-white{background:#fff;padding:96px 32px}
+    .section-inner{max-width:1100px;margin:0 auto}
+    .section-label{font-size:12px;font-weight:700;color:#e63946;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+    .section-title{font-size:38px;font-weight:800;letter-spacing:-1px;margin-bottom:56px}
+    .section-header{text-align:center}
 
-    /* CARDS */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .card { background: #fff; border-radius: 18px; padding: 36px; border: 1px solid #e8e8f0; transition: box-shadow 0.2s; }
-    .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
-    .card-icon { font-size: 34px; margin-bottom: 18px; }
-    .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
-    .card p { color: #666; font-size: 15px; line-height: 1.65; }
+    /* INFRA STACK */
+    .infra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .infra-card{background:#fff;border-radius:18px;padding:32px;border:1px solid #e8e8f0;transition:box-shadow .2s}
+    .infra-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
+    .infra-icon{font-size:32px;margin-bottom:16px}
+    .infra-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+    .infra-card p{color:#666;font-size:14px;line-height:1.65}
+    .infra-tag{display:inline-block;background:#fff0f1;color:#e63946;border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;margin-bottom:14px}
 
     /* HOW IT WORKS */
-    .step { position: relative; }
-    .step-num { font-size: 11px; font-weight: 800; color: #e63946; letter-spacing: 0.15em; margin-bottom: 14px; }
-    .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-    .step p { color: #666; font-size: 14px; line-height: 1.7; }
-    .step-arrow { position: absolute; top: 4px; right: -14px; color: #ccc; font-size: 20px; }
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+    .step{position:relative}
+    .step-num{font-size:11px;font-weight:800;color:#e63946;letter-spacing:.15em;margin-bottom:14px}
+    .step h3{font-size:17px;font-weight:700;margin-bottom:10px}
+    .step p{color:#666;font-size:14px;line-height:1.7}
+    .step-arrow{position:absolute;top:4px;right:-14px;color:#ccc;font-size:20px}
 
-    /* FOR WHOM */
-    .card-dark { background: #1a1a2e; border-radius: 20px; padding: 44px; color: #fff; }
-    .card-dark h3 { font-size: 23px; font-weight: 800; margin-bottom: 16px; }
-    .card-dark ul { color: #bbb; font-size: 15px; line-height: 2.1; padding-left: 20px; }
-    .card-red { background: #fff0f1; border-radius: 20px; padding: 44px; border: 1px solid #ffd0d3; }
-    .card-red h3 { font-size: 23px; font-weight: 800; margin-bottom: 16px; }
-    .card-red ul { color: #555; font-size: 15px; line-height: 2.1; padding-left: 20px; }
+    /* CLUB */
+    .club-section{background:linear-gradient(135deg,#1a1a2e 0%,#2d1f3d 100%);padding:96px 32px}
+    .club-inner{max-width:1100px;margin:0 auto}
+    .club-header{text-align:center;margin-bottom:56px}
+    .club-label{font-size:12px;font-weight:700;color:#ff8a93;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+    .club-title{font-size:38px;font-weight:800;letter-spacing:-1px;color:#fff;margin-bottom:16px}
+    .club-sub{color:rgba(255,255,255,.6);font-size:17px;max-width:520px;margin:0 auto}
+    .club-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .club-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;transition:background .2s}
+    .club-card:hover{background:rgba(255,255,255,.1)}
+    .club-card-icon{font-size:28px;margin-bottom:14px}
+    .club-card h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+    .club-card p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
+    .club-cta{text-align:center;margin-top:48px}
+    .btn-club{background:#e63946;color:#fff;border:none;border-radius:10px;padding:15px 36px;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 4px 24px rgba(230,57,70,.4)}
+
+    /* WHO */
+    .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .who-dark{background:#1a1a2e;border-radius:20px;padding:44px;color:#fff}
+    .who-dark h3{font-size:23px;font-weight:800;margin-bottom:16px}
+    .who-dark ul{color:#bbb;font-size:15px;line-height:2.1;padding-left:20px}
+    .who-light{background:#fff0f1;border-radius:20px;padding:44px;border:1px solid #ffd0d3}
+    .who-light h3{font-size:23px;font-weight:800;margin-bottom:16px}
+    .who-light ul{color:#555;font-size:15px;line-height:2.1;padding-left:20px}
 
     /* TEAM */
-    .team-card { background: #f8f8fb; border-radius: 16px; padding: 26px; border: 1px solid #e8e8f0; }
-    .team-avatar { width: 48px; height: 48px; border-radius: 50%; background: #ffe0e3; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
-    .team-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
-    .team-role { font-size: 13px; color: #e63946; font-weight: 600; margin-bottom: 8px; }
-    .team-bg { font-size: 13px; color: #888; line-height: 1.6; }
+    .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .team-card{background:#f8f8fb;border-radius:16px;padding:26px;border:1px solid #e8e8f0}
+    .team-avatar{width:48px;height:48px;border-radius:50%;background:#ffe0e3;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+    .team-name{font-weight:700;font-size:15px;margin-bottom:4px}
+    .team-role{font-size:13px;color:#e63946;font-weight:600;margin-bottom:8px}
+    .team-bg{font-size:13px;color:#888;line-height:1.6}
 
     /* CTA */
-    .cta { background: #e63946; padding: 96px 32px; text-align: center; }
-    .cta h2 { font-size: 42px; font-weight: 900; color: #fff; letter-spacing: -1.5px; margin-bottom: 16px; }
-    .cta p { color: rgba(255,255,255,0.8); font-size: 18px; margin-bottom: 44px; }
-    .cta-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .cta-input { padding: 15px 22px; border-radius: 10px; border: none; font-size: 16px; width: 300px; outline: none; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
-    .btn-dark { background: #1a1a2e; color: #fff; border: none; border-radius: 10px; padding: 15px 30px; font-weight: 700; font-size: 16px; cursor: pointer; }
-    .success-msg { color: #fff; font-size: 22px; font-weight: 700; }
+    .cta{background:#e63946;padding:96px 32px;text-align:center}
+    .cta h2{font-size:42px;font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:16px}
+    .cta p{color:rgba(255,255,255,.8);font-size:18px;margin-bottom:44px}
+    .cta-form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .cta-input{padding:15px 22px;border-radius:10px;border:none;font-size:16px;width:300px;outline:none;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+    .success-msg{color:#fff;font-size:22px;font-weight:700}
 
-    /* FOOTER */
-    footer { background: #1a1a2e; padding: 44px 32px; text-align: center; }
-    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 800; font-size: 17px; color: #fff; margin-bottom: 16px; }
-    .footer-logo span { color: #e63946; }
-    footer p { color: #555; font-size: 13px; }
+    footer{background:#1a1a2e;padding:44px 32px;text-align:center}
+    .footer-logo{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:17px;color:#fff;margin-bottom:16px}
+    .footer-logo span{color:#e63946}
+    footer p{color:#555;font-size:13px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="logo">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="8" fill="#1a1a2e"/>
-        <path d="M6 24 L16 8 L26 24" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10 19h12" stroke="#e63946" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Sino<span>Gate</span>
-    </div>
-    <div class="nav-links">
-      <a href="#">Platform</a>
-      <a href="#">Strategies</a>
-      <a href="#">How It Works</a>
-      <a href="#">Team</a>
-    </div>
-    <button class="btn-primary">Request Access</button>
-  </nav>
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#1a1a2e"/>
+      <path d="M6 24 L16 8 L26 24" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 19h12" stroke="#e63946" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Sino<span>Gate</span>
+  </div>
+  <div class="nav-links">
+    <a href="#">Platform</a>
+    <a href="#">Infrastructure</a>
+    <a href="#">SinoGate Club</a>
+    <a href="#">Team</a>
+  </div>
+  <button class="btn-red">Request Access</button>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="badge">🇨🇳 The Gateway to China Private Markets</div>
-    <h1>Global capital.<br><span>China alpha.</span><br>One gate.</h1>
-    <p>SinoGate connects international investors and advisors to China's top quantitative and alternative strategies — fully packaged, compliant, and ready to allocate.</p>
-    <div class="hero-btns">
-      <button class="btn-hero">Request Early Access →</button>
-      <button class="btn-secondary">View Strategies</button>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">🇨🇳 The Infrastructure Layer for China-Global Capital Flows</div>
+  <h1>Global capital.<br><span>China alpha.</span><br>One gate.</h1>
+  <p>SinoGate is the infrastructure platform connecting China's top quantitative and alternative strategies to global investors — with the compliance stack, distribution rails, and community to make it real.</p>
+  <div class="hero-btns">
+    <button class="btn-hero">Request Early Access →</button>
+    <button class="btn-outline">View Strategies</button>
+  </div>
+</section>
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stats-grid">
-      <div><div class="stat-num">$2B+</div><div class="stat-label">AUM Targeted</div></div>
-      <div><div class="stat-num">50+</div><div class="stat-label">China Quant Strategies</div></div>
-      <div><div class="stat-num">30+</div><div class="stat-label">Global Advisor Partners</div></div>
-      <div><div class="stat-num">3</div><div class="stat-label">Regulatory Jurisdictions</div></div>
-    </div>
-  </section>
+<!-- TWO PILLARS -->
+<div class="pillars">
+  <div class="pillar pillar-infra">
+    <span class="pillar-tag tag-infra">PLATFORM</span>
+    <h3>Infrastructure for cross-border allocation</h3>
+    <p>The compliance stack, structuring tools, and distribution rails that make China private strategies accessible to global LPs.</p>
+    <ul>
+      <li>Cayman / UCITS / interval fund structuring</li>
+      <li>KYC, AML & subscription automation</li>
+      <li>Multi-currency NAV & English IR reporting</li>
+      <li>RIA & family office distribution network</li>
+    </ul>
+  </div>
+  <div class="pillar pillar-club">
+    <span class="pillar-tag tag-club">SINOGATE CLUB</span>
+    <h3>Premium access for serious allocators</h3>
+    <p>An invite-only community for family offices, RIAs, and institutional allocators seeking curated China exposure.</p>
+    <ul>
+      <li>Private strategy roadshows & Demo Days</li>
+      <li>Exclusive FO/advisor dinners globally</li>
+      <li>Proprietary manager research reports</li>
+      <li>First-look allocation rights on new strategies</li>
+    </ul>
+  </div>
+</div>
 
-  <!-- PROBLEM -->
-  <section class="section">
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div><div class="stat-num">$2B+</div><div class="stat-label">AUM Targeted</div></div>
+    <div><div class="stat-num">50+</div><div class="stat-label">China Quant Strategies</div></div>
+    <div><div class="stat-num">30+</div><div class="stat-label">Global Advisor Partners</div></div>
+    <div><div class="stat-num">3</div><div class="stat-label">Regulatory Jurisdictions</div></div>
+  </div>
+</section>
+
+<!-- INFRA STACK -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Infrastructure</div>
+    <h2 class="section-title">The full stack — from strategy to settlement</h2>
+  </div>
+  <div class="infra-grid">
+    <div class="infra-card">
+      <div class="infra-tag">PACKAGING</div>
+      <div class="infra-icon">🏗️</div>
+      <h3>Fund Structuring</h3>
+      <p>We package Chinese strategies into Cayman SPVs, UCITS, BDC-style, or interval fund formats that global advisors can actually buy.</p>
+    </div>
+    <div class="infra-card">
+      <div class="infra-tag">COMPLIANCE</div>
+      <div class="infra-icon">🔐</div>
+      <h3>Cross-border Compliance Stack</h3>
+      <p>Automated KYC/AML, suitability checks, subscription & redemption workflows — the Stripe of China fund distribution.</p>
+    </div>
+    <div class="infra-card">
+      <div class="infra-tag">DISTRIBUTION</div>
+      <div class="infra-icon">🌐</div>
+      <h3>Global Distribution Rails</h3>
+      <p>Direct relationships with RIAs, multi-family offices, and wealth platforms across the US, EU, and Southeast Asia.</p>
+    </div>
+    <div class="infra-card">
+      <div class="infra-tag">REPORTING</div>
+      <div class="infra-icon">📊</div>
+      <h3>IR & Reporting Engine</h3>
+      <p>English-language NAV reporting, audit coordination, investor letters, and multi-currency statements — all standardized.</p>
+    </div>
+    <div class="infra-card">
+      <div class="infra-tag">INDEXING</div>
+      <div class="infra-icon">📈</div>
+      <h3>Strategy Indexing & ETF Packaging</h3>
+      <p>We're exploring wrapping top quant strategies into investable index products or active ETFs for offshore listing — true democratization of A-share alpha.</p>
+    </div>
+    <div class="infra-card">
+      <div class="infra-tag">SECONDARY</div>
+      <div class="infra-icon">🔄</div>
+      <h3>Liquidity & Secondary Solutions</h3>
+      <p>As retail capital flows into illiquid vehicles, secondary market infrastructure becomes critical. We're building the pipes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-white">
+  <div class="section-inner">
     <div class="section-header">
-      <div class="section-label">The Problem</div>
-      <h2 class="section-title">The best China strategies are<br>invisible to global capital</h2>
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From Chinese manager to global portfolio</h2>
     </div>
-    <div class="grid-3">
-      <div class="card"><div class="card-icon">🔒</div><h3>Locked Out</h3><p>Foreign investors have no easy way to access China's top-performing quant managers.</p></div>
-      <div class="card"><div class="card-icon">🗂️</div><h3>Wrong Packaging</h3><p>Chinese fund structures are incompatible with global advisor platforms and compliance requirements.</p></div>
-      <div class="card"><div class="card-icon">📉</div><h3>Missed Diversification</h3><p>A-share alpha has near-zero correlation with global markets — yet it's invisible to most portfolios.</p></div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="section-white">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-label">How It Works</div>
-        <h2 class="section-title">From Chinese manager to global portfolio</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Strategy Sourcing</h3>
+        <p>We identify and vet top-tier Chinese quant and long/short equity managers with audited track records and institutional-grade ops.</p>
+        <div class="step-arrow">→</div>
       </div>
-      <div class="grid-4">
-        <div class="step"><div class="step-num">01</div><h3>Strategy Sourcing</h3><p>We identify and vet top-tier Chinese quantitative and long/short equity managers with audited track records.</p><div class="step-arrow">→</div></div>
-        <div class="step"><div class="step-num">02</div><h3>Compliant Packaging</h3><p>Strategies are structured into Cayman SPVs, UCITS, or interval fund formats accessible to international investors.</p><div class="step-arrow">→</div></div>
-        <div class="step"><div class="step-num">03</div><h3>Distribution</h3><p>We connect packaged products to our network of global RIAs, family offices, and wealth platforms.</p><div class="step-arrow">→</div></div>
-        <div class="step"><div class="step-num">04</div><h3>Ongoing IR & Reporting</h3><p>Standardized reporting, multi-currency NAV, and dedicated IR support — all in English.</p></div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Compliant Packaging</h3>
+        <p>Strategies are structured into Cayman SPVs, UCITS, or interval fund formats that international investors can access without compliance friction.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Distribution</h3>
+        <p>We connect packaged strategies to our global network of RIAs, family offices, and wealth platforms actively seeking China exposure.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Ongoing IR & Reporting</h3>
+        <p>Standardized English reporting, multi-currency NAV, dedicated IR support, and Club-level relationship management.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOR WHOM -->
-  <section class="section">
+<!-- SINOGATE CLUB -->
+<section class="club-section">
+  <div class="club-inner">
+    <div class="club-header">
+      <div class="club-label">✦ SinoGate Club</div>
+      <h2 class="club-title">Where serious allocators meet<br>China's best managers</h2>
+      <p class="club-sub">An invite-only network modeled after Opal Group — curated events, proprietary research, and first-look allocation rights for family offices and institutional advisors.</p>
+    </div>
+    <div class="club-grid">
+      <div class="club-card">
+        <div class="club-card-icon">🎤</div>
+        <h3>Private Roadshows</h3>
+        <p>Exclusive strategy presentations and Demo Days with top Chinese quant and alternative managers.</p>
+      </div>
+      <div class="club-card">
+        <div class="club-card-icon">🥂</div>
+        <h3>FO & Advisor Dinners</h3>
+        <p>Intimate gatherings in New York, London, Singapore, and Hong Kong connecting allocators and managers.</p>
+      </div>
+      <div class="club-card">
+        <div class="club-card-icon">📋</div>
+        <h3>Proprietary Research</h3>
+        <p>In-depth strategy diligence reports, macro overlays, and manager scorecards — exclusively for Club members.</p>
+      </div>
+      <div class="club-card">
+        <div class="club-card-icon">🎯</div>
+        <h3>First-Look Allocations</h3>
+        <p>Priority access to new strategy launches and hard-to-access capacity before it opens to the broader market.</p>
+      </div>
+    </div>
+    <div class="club-cta">
+      <button class="btn-club">Apply for Club Membership →</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Who We Serve</div>
+    <h2 class="section-title">Built for both sides of the gate</h2>
+  </div>
+  <div class="who-grid">
+    <div class="who-dark">
+      <div style="font-size:32px;margin-bottom:18px">🌏</div>
+      <h3>For Global Investors</h3>
+      <ul>
+        <li>Access China quant alpha with near-zero global correlation</li>
+        <li>Compliant structures: Cayman, UCITS, interval funds</li>
+        <li>English-language reporting & dedicated IR</li>
+        <li>Club membership: events, research & first-look access</li>
+        <li>Minimum tickets from $250K</li>
+      </ul>
+    </div>
+    <div class="who-light">
+      <div style="font-size:32px;margin-bottom:18px">🏦</div>
+      <h3>For Chinese Managers</h3>
+      <ul>
+        <li>Access global LP base beyond domestic saturation</li>
+        <li>Full fund structuring & cross-border compliance support</li>
+        <li>Distribution to RIAs, family offices & wealth platforms</li>
+        <li>Club introductions to pre-qualified global allocators</li>
+        <li>IR materials, pitch decks & roadshow logistics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section-white">
+  <div class="section-inner">
     <div class="section-header">
-      <div class="section-label">Who We Serve</div>
-      <h2 class="section-title">Built for both sides of the gate</h2>
+      <div class="section-label">Team</div>
+      <h2 class="section-title">Built by people who've sat on both sides</h2>
     </div>
-    <div class="grid-2">
-      <div class="card-dark">
-        <div style="font-size:32px;margin-bottom:18px">🌏</div>
-        <h3>For Global Investors</h3>
-        <ul>
-          <li>Access China quant alpha with near-zero global correlation</li>
-          <li>Compliant structures: Cayman, UCITS, interval funds</li>
-          <li>English-language reporting & dedicated IR</li>
-          <li>Minimum tickets from $250K</li>
-        </ul>
-      </div>
-      <div class="card-red">
-        <div style="font-size:32px;margin-bottom:18px">🏦</div>
-        <h3>For Chinese Managers</h3>
-        <ul>
-          <li>Access global LP base beyond domestic constraints</li>
-          <li>Full structuring & compliance support</li>
-          <li>Distribution to RIAs, family offices & wealth platforms</li>
-          <li>IR materials, pitch decks & roadshow support</li>
-        </ul>
-      </div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Founder & CEO</div><div class="team-role">Cross-border Capital Markets</div><div class="team-bg">China private equity & fund structuring</div></div>
+      <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Head of Manager Relations</div><div class="team-role">China Quant IR</div><div class="team-bg">Former top-tier quant fund, Shanghai</div></div>
+      <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Head of Distribution</div><div class="team-role">Global Wealth Networks</div><div class="team-bg">RIA and family office network, US/EU</div></div>
+      <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">General Counsel</div><div class="team-role">Fund Structuring</div><div class="team-bg">Cayman / HK fund specialist</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TEAM -->
-  <section class="section-white">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-label">Team</div>
-        <h2 class="section-title">Built by people who've sat on both sides</h2>
-      </div>
-      <div class="grid-4">
-        <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Founder & CEO</div><div class="team-role">Cross-border Capital Markets</div><div class="team-bg">China private equity & fund structuring</div></div>
-        <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Head of Manager Relations</div><div class="team-role">China Quant IR</div><div class="team-bg">Former top-tier quant fund, Shanghai</div></div>
-        <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Head of Distribution</div><div class="team-role">Global Wealth Networks</div><div class="team-bg">RIA and family office network, US/EU</div></div>
-        <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">General Counsel</div><div class="team-role">Fund Structuring</div><div class="team-bg">Cayman / HK fund specialist</div></div>
-      </div>
-    </div>
-  </section>
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to open the gate?</h2>
+  <p>Join the waitlist. First allocations and Club memberships opening Q3 2025.</p>
+  <div class="cta-form" id="cta-form">
+    <input class="cta-input" type="email" placeholder="your@email.com" id="email-input"/>
+    <button class="btn-dark" onclick="submitEmail()">Join Waitlist →</button>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <h2>Ready to open the gate?</h2>
-    <p>Join the waitlist. First allocations opening Q3 2025.</p>
-    <div class="cta-form" id="cta-form">
-      <input class="cta-input" type="email" placeholder="your@email.com" id="email-input"/>
-      <button class="btn-dark" onclick="submitEmail()">Join Waitlist →</button>
-    </div>
-  </section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#1a1a2e"/>
+      <path d="M6 24 L16 8 L26 24" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 19h12" stroke="#e63946" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Sino<span>Gate</span>
+  </div>
+  <p>© 2025 SinoGate. For qualified investors only. Not an offer to sell securities.</p>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="8" fill="#1a1a2e"/>
-        <path d="M6 24 L16 8 L26 24" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10 19h12" stroke="#e63946" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Sino<span>Gate</span>
-    </div>
-    <p>© 2025 SinoGate. For qualified investors only. Not an offer to sell securities.</p>
-  </footer>
-
-  <script>
-    function submitEmail() {
-      const form = document.getElementById('cta-form');
-      form.innerHTML = '<div class="success-msg">✅ You\'re on the list. We\'ll be in touch soon.</div>';
-    }
-  </script>
-
+<script>
+  function submitEmail(){
+    document.getElementById('cta-form').innerHTML='<div class="success-msg">✅ You\'re on the list. We\'ll be in touch soon.</div>';
+  }
+</script>
 </body>
 </html>
